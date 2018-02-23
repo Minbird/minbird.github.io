@@ -1,0 +1,5 @@
+*.todo
+*.sublime-workspace
+design
+
+_deprecated
