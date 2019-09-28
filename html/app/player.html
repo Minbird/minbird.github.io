@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Playmusic</title>
+<style type="text/css">
+
+	body {
+
+  margin: 0;
+
+  padding: 0;
+
+  border: 0;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  }
+  
+  p{text-align:center}
+
+</style>
+
+
+<script>
+	
+	var str
+	
+	var setStr = function (t){
+		str = t
+	}
+	
+	window.onload = function() {
+		var str1 = document.getElementById('text1');
+		
+		str1.firstChild.data = str;
+	}
+
+</script>
+
+</head>
+
+
+
+  <body>
+
+	<p id="text1" style="font-size:20px;color:white;line-height:150%; ">No Messages.</p>
+
+  </body>
+
+</html>
