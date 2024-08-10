@@ -137,8 +137,6 @@
             const endOfUrl = "&autoplay=1&modestbranding=1&rel=0";
             const finalUrl = startOfUrl + videoID + endOfUrl;
 			
-			clearAllPlayers();
-
             const iframe = document.createElement('iframe');
 
             iframe.setAttribute('src', finalUrl);
