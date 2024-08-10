@@ -101,7 +101,7 @@
 	
 	function clearAllPlayers() {
     
-        const videoPlayerElements = document.querySelectorAll('.html5-video-player');
+        const videoPlayerElements = document.querySelectorAll('#player');
     
         if (videoPlayerElements.length === 0) {
             console.error("No elements with class 'html5-video-player' found.");
@@ -122,6 +122,7 @@
 			if (typeof isPlayerModified !== "undefined" && isPlayerModified) {
 				return;
 			};
+			clearAllPlayers()
 
             var video = document.querySelector('video');
             if (video) video.volume = 0;
@@ -161,6 +162,7 @@
             console.info("Finished");
 
             isPlayerModified = true;
+			var player = document.querySelector('#movie_player');
 
     }
 	
