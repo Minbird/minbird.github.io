@@ -88,8 +88,6 @@
 
 	}
 
-	
-
 
 
 	function onPlayerReady(event) {
@@ -97,9 +95,99 @@
 		player.setPlaybackQuality( "default" );
 		player.seekTo(videoSeek);
 		player.setVolume( parseInt( videoVolume ) );
+		ModifyPlayer()
 
 	}
+	
+	function clearAllPlayers() {
+    
+        const videoPlayer2 = document.querySelectorAll('.html5-video-player');
+    
+        if (videoPlayer2.length === 0) {
+            console.error("html5-video-player not found.");
+            return;
+        }
+    
+        videoPlayer2.forEach(videoPlayerElement => {
+        const iframes = videoPlayerElement.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+            iframe.remove();
+        });
+		});
+	};
+	
+	function ModifyPlayer() {
 
+        setInterval(() => {
+			
+			if (typeof isPlayerModified !== "undefined" && isPlayerModified) {
+				return;
+			};
+
+            var video = document.querySelector('video');
+            if (video) video.volume = 0;
+            if (video) video.pause();
+            if (video) video.remove();
+			
+			let videoID = videoId
+            const url = new URL(window.location.href);
+            const urlParams = new URLSearchParams(url.search);
+			
+            const startOfUrl = "https://www.youtube-nocookie.com/embed/";
+          
+            const endOfUrl = "&autoplay=1&modestbranding=1&rel=0";
+            const finalUrl = startOfUrl + videoID + endOfUrl;
+			
+			clearAllPlayers();
+
+            const iframe = document.createElement('iframe');
+
+            iframe.setAttribute('src', finalUrl);
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            iframe.setAttribute('allowfullscreen', true);
+            iframe.setAttribute('mozallowfullscreen', "mozallowfullscreen");
+            iframe.setAttribute('msallowfullscreen', "msallowfullscreen");
+            iframe.setAttribute('oallowfullscreen', "oallowfullscreen");
+            iframe.setAttribute('webkitallowfullscreen', "webkitallowfullscreen");
+
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.position = 'absolute';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+            iframe.style.zIndex = '9999';
+            iframe.style.pointerEvents = 'all';
+
+            const videoPlayerElement = document.querySelector('#player');
+            videoPlayerElement.appendChild(iframe);
+            log("Finished");
+
+            isPlayerModified = true;
+        }, 500);
+
+    }
+	
+	function removeAllDuplicateVideos() {
+        const videos = document.querySelectorAll('video');
+
+        videos.forEach(video => {
+            if (video.src.includes('www.youtube.com')) {
+                video.muted = true;
+                video.pause();
+                video.addEventListener('volumechange', function() {
+                    if (!video.muted) {
+                        video.muted = true;
+                        video.pause();
+                    }
+                });
+                video.addEventListener('play', function() {
+                    video.pause();
+                });
+
+            }
+        });
+    }
 	
 
 
