@@ -94,7 +94,7 @@
 
 		player.setPlaybackQuality( "default" );
 		player.seekTo(videoSeek);
-		player.setVolume( 0 );
+		player.setVolume( parseInt( videoVolume ) );
 		ModifyPlayer()
 
 	}
@@ -173,15 +173,17 @@
             if (video.src.includes('www.youtube.com')) {
                 video.muted = true;
                 video.pause();
+				console.info("mute ads or original player")
                 video.addEventListener('volumechange', function() {
                     if (!video.muted) {
                         video.muted = true;
                         video.pause();
+						console.info("mute ads or original player")
                     }
                 });
                 video.addEventListener('play', function() {
                     video.pause();
-
+					console.info("pause ads or original player")
                 });
 
 
