@@ -94,7 +94,7 @@
 
 		player.setPlaybackQuality( "default" );
 		player.seekTo(videoSeek);
-		player.setVolume( 0 );
+		player.setVolume( parseInt( videoVolume ) );
 		ModifyPlayer()
 
 	}
@@ -550,7 +550,7 @@
 
     function changeTimestamp(timestamp) {
 		document.querySelectorAll('iframe').forEach( item =>
-			const videoPlayerElements = document.querySelectorAll('.html5-video-player');
+			const videoPlayerElements = item.document.querySelectorAll('.html5-video-player');
 			videoPlayerElements.forEach(videoPlayerElement => {
 				const iframes = videoPlayerElement.querySelectorAll('iframe');
 				iframes.forEach(iframe => {
