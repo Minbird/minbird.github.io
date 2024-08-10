@@ -101,24 +101,23 @@
 	
 	function clearAllPlayers() {
     
-        const videoPlayer2 = document.querySelectorAll('.html5-video-player');
+        const videoPlayerElements = document.querySelectorAll('.html5-video-player');
     
-        if (videoPlayer2.length === 0) {
-            console.error("html5-video-player not found.");
-            return;
+        if (videoPlayerElements.length === 0) {
+            console.error("No elements with class 'html5-video-player' found.");
+            return false;
         }
     
-        videoPlayer2.forEach(videoPlayerElement => {
+        videoPlayerElements.forEach(videoPlayerElement => {
         const iframes = videoPlayerElement.querySelectorAll('iframe');
         iframes.forEach(iframe => {
             iframe.remove();
+			console.info("removed.");
         });
 		});
 	};
 	
-	function ModifyPlayer() {
-
-        setInterval(() => {
+	    function ModifyPlayer() {
 			
 			if (typeof isPlayerModified !== "undefined" && isPlayerModified) {
 				return;
@@ -164,7 +163,6 @@
             log("Finished");
 
             isPlayerModified = true;
-        }, 500);
 
     }
 	
@@ -183,12 +181,13 @@
                 });
                 video.addEventListener('play', function() {
                     video.pause();
+
                 });
+
 
             }
         });
     }
-	
 
 
 
